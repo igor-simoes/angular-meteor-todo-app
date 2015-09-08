@@ -1,3 +1,31 @@
 <div class="jumbotron">
+    <!-- app name -->
     <h1>{{app}}</h1>
+    <!-- table tasks -->
+    <table class="table table-bordered">
+        <thead>
+            <th class="txtCenter">Select</th>
+            <th class="txtCenter">Name</th>
+            <th class="txtCenter">Hour</th>
+            <th class="txtCenter">Status</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="task in tasks | orderBy: 'name'" ng-class="{isSelect : task.selections}">
+                <td>
+                    <input type="checkbox" ng-model="task.selections" ng-hide="task.status === 'Complete'"/>
+                </td>
+                <td>{{task.name}}</td>
+                <td>{{task.hour}}</td>
+                <td>{{task.status}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Add Task</h2>
+    <!-- form tasks -->
+    <input type="text" class="form-control block" placeholder="task name" ng-model="task.name"/>
+    <input type="text" class="form-control block" placeholder="task hour" ng-model="task.hour"/>
+    <button ng-click="addTask(task)" class="btn btn-primary btn-block">Add Task</button>
+    <button ng-click="removeAllTask()" class="btn btn-danger btn-block">Remove All</button>
+
 </div>

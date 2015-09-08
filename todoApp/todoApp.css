@@ -7,3 +7,11 @@
     margin-right: auto;
     text-align: center;
 }
+
+.txtCenter{
+    text-align: center;
+}
+
+.isSelect{
+    background-color: yellow;
+}
