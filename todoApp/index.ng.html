@@ -24,8 +24,12 @@
     <h2>Add Task</h2>
     <!-- form tasks -->
     <input type="text" class="form-control block" placeholder="task name" ng-model="task.name"/>
-    <input type="text" class="form-control block" placeholder="task hour" ng-model="task.hour"/>
+    <input type="text" class="form-control block" placeholder="task hour" ng-model="task.hour" ng-pattern="/^([01][0-9]|2[0-3]):[0-5][0-9]$/"/>
+    <select class="form-control block" ng-options="x for x in status" ng-model="task.status">
+        <option value="">Choose a Status</option>
+    </select>
     <button ng-click="addTask(task)" class="btn btn-primary btn-block">Add Task</button>
+    <button ng-click="removeSelected(task)" class="btn btn-primary btn-block">Remove One</button>
     <button ng-click="removeAllTask()" class="btn btn-danger btn-block">Remove All</button>
 
 </div>

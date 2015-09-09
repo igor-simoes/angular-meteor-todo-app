@@ -6,17 +6,18 @@ if (Meteor.isClient) {
     myApp.controller('todoController', function($scope, $meteor){
         $scope.app = "todoApp Meteor";
         $scope.tasks = $meteor.collection(Tasks);
+        $scope.status = ['Complete', 'Incomplete'];
 
         $scope.addTask = function(task){
             Tasks.insert(angular.copy(task));
             delete task;
         };
-
         $scope.removeAllTask = function(){
-            // Tasks.remove({});
-            Meteor.call('removeAllTask')
+            Meteor.call('removeAllTask');
         };
-
+        $scope.removeSelected = function(){
+            Meteor.call('removeSelected');
+        };
     });
 
 }
@@ -36,7 +37,10 @@ if (Meteor.isServer) {
 
       return Meteor.methods({
           removeAllTask: function() {
-              return Tasks.remove({});
+              return Tasks.remove({})
+          },
+          removeSelected: function(task){
+              return Tasks.remove({ selections: true })
           }
       });
   });
